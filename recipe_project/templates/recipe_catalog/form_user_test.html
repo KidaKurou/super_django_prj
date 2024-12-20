@@ -1,0 +1,14 @@
+{% extends 'recipe_catalog/base.html' %}
+
+{% block content %}
+<div class="container">
+    <form method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" value="Submit">Отправить</button>
+    </form>
+    {% if request.GET %}
+    <h2>Hello, {{ request.GET.first_name }}</h2>
+    {% endif %}
+</div>
+{% endblock %}

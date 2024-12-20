@@ -1,0 +1,22 @@
+{% extends 'recipe_catalog/base.html' %}
+
+{% block content %}
+<h2>Recipe</h2>
+{% with data=form.instance %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {% if not "/delete" in request.path %}
+    {{ form.as_p }}
+    {% else %}
+    <p>{{ data.title }}</p>
+    <p>{{ data.description }}</p>
+    <p>Время готовки {{ data.cooking_time }} мин</p>
+    <p>{{ data.author }}</p>
+    {% endif %}
+    <input type="submit" value="Submit">
+</form>
+{% if form.is_valid %}
+ID new ingredient: {{ data.id }}
+{% endif %}
+{% endwith %}
+{% endblock content %}

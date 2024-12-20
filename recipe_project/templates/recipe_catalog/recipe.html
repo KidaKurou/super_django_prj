@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Страница рецепта {{ title }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }} - Наши Рецепты</title>
+    <link rel="icon" href="{% static 'favicon.ico' %}" type="image">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="w3-bar w3-black">
+                <a href="/" class="w3-bar-item w3-button">Главная страница</a>
+                <a href="{% url 'recipe_catalog:about' %}" class="w3-bar-item w3-button">О сайте</a>
+            </nav>
+        </header>
+        <main class="w3-container main-content">
+            <h1>{{ title }}</h1>
+            <p>Время готовки: {{ cooking_time }}</p>
+            <hr>
+            <p>{{ description }}</p>
+            <hr>
+            {% if image %}
+            <img src="{{ image.url }}" alt="Изображение {{ title }}" class="w3-image" width="30%">
+            {% endif %}
+            <h2>Ингредиенты:</h2>
+            <table class="w3-table-all w3-hoverable" border="1">
+                <thead>
+                    <tr>
+                        <th>Ингредиент</th>
+                        <th>Вес (сырой), г</th>
+                        <th>Вес (готовый), г</th>
+                        <th>Стоимость, р</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for ingredient in ingredients %}
+                    <tr>
+                        <td>{{ ingredient.name }}</td>
+                        <td>{{ ingredient.weight }}</td>
+                        <td>{{ ingredient.weight_ready }}</td>
+                        <td>{{ ingredient.price }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </main>
+        <footer class="footer w3-black w3-center w3-padding-16">
+            <p>&copy; Рецепты на любой вкус</p>
+        </footer>
+    </div>
+</body>
+</html>
+

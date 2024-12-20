@@ -1,0 +1,22 @@
+{% extends 'recipe_catalog/base.html' %}
+
+{% block content %}
+<h2>Ingredient</h2>
+{% with data=form.instance %}
+<form method="post">
+    {% csrf_token %}
+    {% if not "/delete" in request.path %}
+    {{ form.as_p }}
+    {% else %}
+    <p>{{ data.name }}</p>
+    <p>Вес {{ data.weight }} g</p>
+    <p>Вес после готовки {{ data.weight_ready }} g</p>
+    <p>{{ data.price }} руб</p>
+    {% endif %}
+    <input type="submit" value="Submit">
+</form>
+{% if form.is_valid %}
+ID new ingredient: {{ data.id }}
+{% endif %}
+{% endwith %}
+{% endblock content %}

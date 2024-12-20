@@ -1,0 +1,10 @@
+{% extends 'recipe_catalog/base.html' %}
+
+{% block content %}
+<h2>Ingredients</h2>
+<p>ID Name Weight Ready Price</p>
+{% for ingredient in ingredients %}
+<p>{{ ingredient.id }} {{ ingredient.name }} {{ ingredient.weight }} {{ ingredient.weight_ready }} {{ ingredient.price }}
+</p><br>
+{% endfor %}
+{% endblock content %}
