@@ -7,4 +7,10 @@ RUN pip install -r requirements.txt --no-cache-dir
 
 COPY . .
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# Collect static files
+RUN mkdir -p /app/static
+RUN python manage.py collectstatic --noinput
+
+# CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+
+CMD ["gunicorn", "recipe_project.wsgi:application", "--bind", "0.0.0.0:8000"]

@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="utf-8">
     <meta name="description" content="Главная страница с рецептами">
@@ -10,6 +11,7 @@
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -23,11 +25,13 @@
             <div>Добро пожаловать! Ниже приведены наши рецепты:</div>
             <div>
                 {% for recipe in recipes %}
-                    <p>
-                        <a href="{% url 'recipe_catalog:recipe_detail' recipe.id %}" class="w3-bar-item w3-button">{{ recipe.title }}</a>
-                    </p>
+                <p>
+                    <a href="{% url 'recipe_catalog:recipe_detail' recipe.id %}" class="w3-bar-item w3-button">
+                        {{ recipe.title }}
+                    </a>
+                </p>
                 {% empty %}
-                    <p>Рецептов пока нет.</p>
+                <p>Рецептов пока нет.</p>
                 {% endfor %}
             </div>
         </main>
@@ -36,4 +40,5 @@
         </footer>
     </div>
 </body>
+
 </html>
