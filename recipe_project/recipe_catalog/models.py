@@ -37,7 +37,7 @@ class RecipeIngredient(models.Model):
 
     def __str__(self):
         return f'{self.ingredient} - {self.recipe}'
-    
+
     class Meta:
         constraints = [
             models.UniqueConstraint(

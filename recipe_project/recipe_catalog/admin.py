@@ -10,9 +10,11 @@ class RecipeAdmin(admin.ModelAdmin):
     inlines = [IngredientInline]
     list_display = ('title', 'description')
 
+
 admin.site.register(Recipe, RecipeAdmin)
 
 class IngredientAdmin(admin.ModelAdmin):
     list_display = ('name', 'weight', 'weight_ready', 'price')
+
 
 admin.site.register(Ingredient, IngredientAdmin)
